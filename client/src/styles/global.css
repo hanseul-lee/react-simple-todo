@@ -132,3 +132,12 @@ img {
 a {
   text-decoration: none;
 }
+
+*::-webkit-scrollbar {
+  display: block;
+  width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+}
