@@ -1,7 +1,15 @@
-import "./App.css";
+import { Route, Routes } from 'react-router-dom';
+
+import { Todo, Login, SignUp } from '@/pages';
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <Routes>
+      <Route path="/" element={<Todo />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signUp" element={<SignUp />} />
+    </Routes>
+  );
 }
 
 export default App;

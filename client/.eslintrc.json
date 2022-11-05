@@ -9,7 +9,12 @@
     "node": true
   },
   "plugins": ["@typescript-eslint", "import"],
-  "extends": ["airbnb", "eslint:recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/consistent-type-imports": ["error"],
