@@ -8,7 +8,7 @@ export const login = async (user: User): Promise<AUTH_RESPONSE_TYPE> => {
     const response = await axios.post(`${BASE_URL}/users/login`, user);
     const { message, token } = response.data;
     if (response.status === 200) {
-      localStorage.setItem('token', `${token}`);
+      localStorage.setItem('token', `Bearer ${token}`);
     }
     return { message, token };
   } catch (err: any) {

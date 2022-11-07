@@ -61,7 +61,7 @@ function TodoList({ setSelectedTodoId, setIsEditing }: TodoListProps) {
     <S.TodoContainer>
       <S.TodoTitle>
         <S.Icon>😎</S.Icon>
-        <S.Title className="todoList">Todo List</S.Title>
+        <S.Title className="todo-list">Todo List</S.Title>
       </S.TodoTitle>
       <S.TodoList>
         {isSuccess &&
