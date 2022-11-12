@@ -64,6 +64,15 @@ export const TodoList = styled.ul`
   padding: 0 15px 0 15px;
   max-height: 400px;
   overflow-y: scroll;
+
+  a.active li {
+    background: #1976d2;
+    color: white;
+
+    svg {
+      fill: white;
+    }
+  }
 `;
 
 export const TodoItem = styled.li`
@@ -72,6 +81,9 @@ export const TodoItem = styled.li`
   justify-content: space-between;
   padding: 5px 0 5px 20px;
   border-radius: 5px;
+  text-decoration: none;
+  color: #121212;
+  height: 45px;
 
   &:hover {
     background-color: #f8f8f8;
@@ -82,5 +94,7 @@ export const TodoItem = styled.li`
 export const Name = styled.span``;
 
 export const IconWrap = styled.div`
-  display: inline-block;
+  & > button {
+    margin: 20px 6px 0;
+  }
 `;
