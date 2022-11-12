@@ -13,7 +13,7 @@ const todoAPI = axios.create({
 export const getAllTodos = async () => {
   try {
     const { data } = await todoAPI.get('');
-    return data;
+    return data?.data;
   } catch (err) {
     console.error(err);
   }
@@ -22,7 +22,7 @@ export const getAllTodos = async () => {
 export const getTodoById = async (id: string) => {
   try {
     const { data } = await todoAPI.get(id);
-    return data;
+    return data?.data;
   } catch (err) {
     console.error(err);
   }

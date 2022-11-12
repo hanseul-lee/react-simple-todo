@@ -74,7 +74,7 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
 
   useEffect(() => {
     if (!data) return;
-    const { id, title, content } = data.data;
+    const { id, title, content } = data;
     setSelectedTodo({ id, title, content });
   }, [data]);
 
