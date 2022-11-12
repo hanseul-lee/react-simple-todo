@@ -61,7 +61,7 @@ export const Title = styled.span`
 `;
 
 export const TodoList = styled.ul`
-  padding: 0 15px 0 15px;
+  padding: 0 30px;
   max-height: 400px;
   overflow-y: scroll;
 
@@ -79,7 +79,7 @@ export const TodoItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 0 5px 20px;
+  padding: 5px 20px;
   border-radius: 5px;
   text-decoration: none;
   color: #121212;
@@ -91,7 +91,10 @@ export const TodoItem = styled.li`
   }
 `;
 
-export const Name = styled.span``;
+export const Name = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 export const IconWrap = styled.div`
   & > button {
