@@ -1,15 +1,23 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { ErrorPage, Login, SignUp, TodoList } from '@/pages';
+import {
+  ErrorPage,
+  Login,
+  LoginLoader,
+  SignUp,
+  TodoList,
+  TodoListLoader,
+} from '@/pages';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <TodoList />,
     errorElement: <ErrorPage />,
+    loader: TodoListLoader,
     children: [
       {
-        path: 'todo/:todoId',
+        path: 'todos/:todoId',
         element: <TodoList />,
       },
     ],
@@ -17,6 +25,7 @@ export const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+    loader: LoginLoader,
   },
   {
     path: '/signUp',

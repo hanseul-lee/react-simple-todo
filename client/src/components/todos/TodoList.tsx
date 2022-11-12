@@ -23,7 +23,7 @@ function TodoList({ setIsEditing }: TodoListProps) {
         {isSuccess
           ? data.map((todo: Todo) => (
               <NavLink
-                to={`todo/${todo.id}`}
+                to={`todos/${todo.id}`}
                 key={todo.id}
                 className={({ isActive }) => (isActive ? 'active' : '')}
               >

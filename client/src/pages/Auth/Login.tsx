@@ -1,20 +1,17 @@
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { redirect } from 'react-router-dom';
 
 import { login } from '@/apis';
 import { AuthForm } from '@/components';
 import { AUTH_TYPE } from '@/types';
 
+export const loader = () => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    return redirect('/');
+  }
+};
+
 const Login = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      navigate('/');
-    }
-  }, [navigate]);
-
   return <AuthForm type={AUTH_TYPE.login} onSubmitAPI={login} />;
 };
 
