@@ -40,9 +40,6 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
   const handleEditTodo = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    if (!selectedTodo.title.trim() || !selectedTodo.content.trim()) {
-      return alert(TODO_VALIDATION_ERRORS.INVALID_INPUT);
-    }
     updateTodoMutation.mutate(selectedTodo, {
       onError: () => {
         alert(TODO_VALIDATION_ERRORS.ERROR_DURING_PROCESSING);
@@ -107,7 +104,14 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
         />
         {isEditing && (
           <>
-            <Button type="submit" variant="contained" size="small">
+            <Button
+              type="submit"
+              variant="contained"
+              size="small"
+              disabled={
+                !selectedTodo.title.trim() || !selectedTodo.content.trim()
+              }
+            >
               저장
             </Button>
             <Button
