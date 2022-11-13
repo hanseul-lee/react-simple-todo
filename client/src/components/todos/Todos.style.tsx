@@ -95,6 +95,7 @@ export const TodoItem = styled.li`
 export const Name = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const IconWrap = styled.div`

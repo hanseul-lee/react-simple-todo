@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import { ROUTES } from './consts';
+
 import {
   ErrorPage,
   Login,
@@ -11,24 +13,24 @@ import {
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: ROUTES.main,
     element: <TodoList />,
     errorElement: <ErrorPage />,
     loader: TodoListLoader,
     children: [
       {
-        path: 'todos/:todoId',
+        path: ROUTES.todo,
         element: <TodoList />,
       },
     ],
   },
   {
-    path: '/login',
+    path: ROUTES.login,
     element: <Login />,
     loader: LoginLoader,
   },
   {
-    path: '/signUp',
+    path: ROUTES.signUp,
     element: <SignUp />,
   },
 ]);

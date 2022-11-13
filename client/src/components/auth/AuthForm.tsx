@@ -13,7 +13,7 @@ import {
 
 import * as S from './AuthForm.style';
 
-import { ROUTES, USER_VALIDATION_ERRORS } from '@/consts';
+import { AUTH_TEMPLATE, ROUTES, USER_VALIDATION_ERRORS } from '@/consts';
 import type { User, AUTH_RESPONSE_TYPE } from '@/types';
 import { AUTH_TYPE, ALERT_TYPE } from '@/types';
 
@@ -56,12 +56,12 @@ const AuthForm = ({ type, onSubmitAPI }: AuthFormProps) => {
       setAlertType(ALERT_TYPE.error);
     } else {
       setAlertType(ALERT_TYPE.success);
-      if (type === 'login') {
+      if (type === AUTH_TYPE.login) {
         localStorage.setItem('token', response.token);
-        navigate('/');
+        navigate(ROUTES.main);
         return;
       }
-      navigate('/login');
+      navigate(ROUTES.login);
     }
   };
 
@@ -78,7 +78,7 @@ const AuthForm = ({ type, onSubmitAPI }: AuthFormProps) => {
       <S.Container>
         <S.Header>
           <Avatar sx={{ m: 1, bgcolor: 'primary.main' }} />
-          <S.Title>{ROUTES[type].title}</S.Title>
+          <S.Title>{AUTH_TEMPLATE[type].title}</S.Title>
         </S.Header>
         <S.Form onSubmit={(e) => handleSubmit(e, { email, password })}>
           <TextField
@@ -132,11 +132,7 @@ const AuthForm = ({ type, onSubmitAPI }: AuthFormProps) => {
           <S.ButtonWrap>
             <Stack direction="row" spacing={4}>
               <Link
-                to={
-                  type === AUTH_TYPE.login
-                    ? ROUTES.signUp.link
-                    : ROUTES.login.link
-                }
+                to={type === AUTH_TYPE.login ? ROUTES.signUp : ROUTES.login}
               >
                 <Button variant="outlined">
                   {type === AUTH_TYPE.login ? '회원가입' : '취소'}
@@ -153,7 +149,7 @@ const AuthForm = ({ type, onSubmitAPI }: AuthFormProps) => {
                 type="submit"
                 variant="contained"
               >
-                {ROUTES[type].name}
+                {AUTH_TEMPLATE[type].name}
               </Button>
             </Stack>
           </S.ButtonWrap>
