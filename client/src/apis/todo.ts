@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { BASE_URL } from '@/consts';
 import type { Todo } from '@/types';
@@ -15,7 +15,9 @@ export const getAllTodos = async () => {
     const { data } = await todoAPI.get('');
     return data?.data;
   } catch (err) {
-    console.error(err);
+    if (err instanceof AxiosError) {
+      throw new Error(err.response?.statusText);
+    }
   }
 };
 
@@ -24,7 +26,9 @@ export const getTodoById = async (id: string) => {
     const { data } = await todoAPI.get(id);
     return data?.data;
   } catch (err) {
-    console.error(err);
+    if (err instanceof AxiosError) {
+      throw new Error(err.response?.statusText);
+    }
   }
 };
 
@@ -35,7 +39,9 @@ export const createTodo = async (
     const { data } = await todoAPI.post('', todoContent);
     return data;
   } catch (err) {
-    console.error(err);
+    if (err instanceof AxiosError) {
+      throw new Error(err.response?.statusText);
+    }
   }
 };
 
@@ -48,7 +54,9 @@ export const updateTodo = async ({
     const { data } = await todoAPI.put(id, { title, content });
     return data;
   } catch (err) {
-    console.error(err);
+    if (err instanceof AxiosError) {
+      throw new Error(err.response?.statusText);
+    }
   }
 };
 
@@ -57,6 +65,8 @@ export const deleteTodo = async (id: string) => {
     const { data } = await todoAPI.delete(id);
     return data;
   } catch (err) {
-    console.error(err);
+    if (err instanceof AxiosError) {
+      throw new Error(err.response?.statusText);
+    }
   }
 };

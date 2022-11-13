@@ -50,9 +50,9 @@ const AuthForm = ({ type, onSubmitAPI }: AuthFormProps) => {
 
     const response = await onSubmitAPI(user);
     setOpen(true);
-    setAlertMessage(response.message);
+    setAlertMessage(response?.message || '');
 
-    if (!response.token) {
+    if (!response?.token) {
       setAlertType(ALERT_TYPE.error);
     } else {
       setAlertType(ALERT_TYPE.success);
@@ -181,7 +181,7 @@ type AlertType = typeof ALERT_TYPE[keyof typeof ALERT_TYPE];
 
 interface AuthFormProps {
   type: typeof AUTH_TYPE[keyof typeof AUTH_TYPE];
-  onSubmitAPI: (user: User) => Promise<AUTH_RESPONSE_TYPE>;
+  onSubmitAPI: (user: User) => Promise<AUTH_RESPONSE_TYPE | undefined>;
 }
 
 export default AuthForm;
