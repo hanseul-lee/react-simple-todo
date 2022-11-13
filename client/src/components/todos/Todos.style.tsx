@@ -61,8 +61,9 @@ export const Title = styled.span`
 `;
 
 export const TodoList = styled.ul`
-  padding: 0 30px;
-  max-height: 400px;
+  margin: 20px 20px 0;
+  padding: 0 10px;
+  max-height: 300px;
   overflow-y: scroll;
 
   a.active li {

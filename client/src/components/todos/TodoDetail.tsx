@@ -37,7 +37,7 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
     });
   };
 
-  const handleEditTodo = (e: FormEvent<HTMLFormElement>): void => {
+  const handleClickSaveButton = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     updateTodoMutation.mutate(selectedTodo, {
@@ -46,19 +46,20 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
       },
       onSuccess: () => {
         setIsEditing(false);
+        alert('수정 완료!');
       },
     });
   };
 
-  const handleResetEditing = (): void => {
+  const handleClickResetButton = (): void => {
     setIsEditing(false);
   };
 
-  const handleClickEditIcon = () => {
+  const handleClickEditButton = () => {
     setIsEditing(true);
   };
 
-  const handleClickDeleteIcon = (): void => {
+  const handleClickDeleteButton = (): void => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
 
     deleteTodoMutation.mutate(params.todoId || '', {
@@ -84,7 +85,7 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
         <S.Icon>📝</S.Icon>
         <S.Title>Todo Detail</S.Title>
       </S.TodoTitle>
-      <S.Form onSubmit={handleEditTodo}>
+      <S.Form onSubmit={handleClickSaveButton}>
         <TextField
           label="Title"
           variant="standard"
@@ -118,7 +119,7 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
               type="reset"
               variant="outlined"
               size="small"
-              onClick={handleResetEditing}
+              onClick={handleClickResetButton}
             >
               취소
             </Button>
@@ -127,10 +128,13 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
       </S.Form>
       {!isEditing && (
         <S.IconWrap>
-          <IconButton aria-label="editButton" onClick={handleClickEditIcon}>
+          <IconButton aria-label="editButton" onClick={handleClickEditButton}>
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="deleteButton" onClick={handleClickDeleteIcon}>
+          <IconButton
+            aria-label="deleteButton"
+            onClick={handleClickDeleteButton}
+          >
             <DeleteIcon />
           </IconButton>
         </S.IconWrap>
