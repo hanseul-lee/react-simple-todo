@@ -61,17 +61,30 @@ export const Title = styled.span`
 `;
 
 export const TodoList = styled.ul`
-  padding: 0 15px 0 15px;
-  max-height: 400px;
+  margin: 20px 20px 0;
+  padding: 0 10px;
+  max-height: 300px;
   overflow-y: scroll;
+
+  a.active li {
+    background: #1976d2;
+    color: white;
+
+    svg {
+      fill: white;
+    }
+  }
 `;
 
 export const TodoItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 0 5px 20px;
+  padding: 5px 20px;
   border-radius: 5px;
+  text-decoration: none;
+  color: #121212;
+  height: 45px;
 
   &:hover {
     background-color: #f8f8f8;
@@ -79,8 +92,14 @@ export const TodoItem = styled.li`
   }
 `;
 
-export const Name = styled.span``;
+export const Name = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 
 export const IconWrap = styled.div`
-  display: inline-block;
+  & > button {
+    margin: 20px 6px 0;
+  }
 `;

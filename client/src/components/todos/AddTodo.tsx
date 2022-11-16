@@ -10,6 +10,7 @@ import { createTodo } from '@/apis';
 
 function TodoDetail() {
   const [inputValues, setInputValues] = useState({ title: '', content: '' });
+  const { title, content } = inputValues;
 
   const addTodoMutation = useMutation(createTodo, {
     mutationKey: ['addTodo'],
@@ -17,11 +18,6 @@ function TodoDetail() {
 
   const handleAddTodo = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-
-    const { title, content } = inputValues;
-    if (!title.trim() || !content.trim()) {
-      return alert(TODO_VALIDATION_ERRORS.INVALID_INPUT);
-    }
 
     addTodoMutation.mutate(
       { title, content },
@@ -66,7 +62,12 @@ function TodoDetail() {
           value={inputValues.content}
           onChange={handleChangeInputValue}
         />
-        <Button type="submit" variant="contained" size="small">
+        <Button
+          type="submit"
+          variant="contained"
+          size="small"
+          disabled={!title.trim() || !content.trim()}
+        >
           추가
         </Button>
       </S.Form>

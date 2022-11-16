@@ -1,18 +1,15 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 import { Header, Todos } from '@/components';
 
+export const loader = () => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return redirect('/login');
+  }
+};
+
 const Todo = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-    }
-  }, [navigate]);
-
   return (
     <>
       <Header />
