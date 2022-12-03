@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import { COLORS } from '@/styles';
+
 export const ButtonWrap = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -25,8 +27,8 @@ interface ConfirmButtonProps {
 }
 
 export const ConfirmButton = styled(Button)<ConfirmButtonProps>`
-  background: #1976d2;
-  color: white;
+  background: ${COLORS.primary};
+  color: ${COLORS.white};
 
   ${({ isConfirm }) =>
     !isConfirm &&

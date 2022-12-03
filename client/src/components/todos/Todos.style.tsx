@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { COLORS } from '@/styles';
+
 export const Header = styled.header`
   margin: 20px;
   display: flex;
@@ -67,11 +69,11 @@ export const TodoList = styled.ul`
   overflow-y: scroll;
 
   a.active li {
-    background: #1976d2;
-    color: white;
+    background: ${COLORS.primary};
+    color: ${COLORS.white};
 
     svg {
-      fill: white;
+      fill: ${COLORS.white};
     }
   }
 `;
@@ -83,11 +85,11 @@ export const TodoItem = styled.li`
   padding: 5px 20px;
   border-radius: 5px;
   text-decoration: none;
-  color: #121212;
+  color: ${COLORS.gray900};
   height: 45px;
 
   &:hover {
-    background-color: #f8f8f8;
+    background-color: ${COLORS.gray100};
     cursor: pointer;
   }
 `;
