@@ -1,5 +1,5 @@
 import type { ChangeEvent, FormEvent } from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 
@@ -8,8 +8,11 @@ import * as S from './Todos.style';
 import { Modal } from '@/components';
 import { TODO_VALIDATION_ERRORS } from '@/consts';
 import { createTodo } from '@/apis';
+import { TodoContext } from '@/store';
 
-function TodoDetail() {
+function AddTodo() {
+  const { refetch } = useContext(TodoContext);
+
   const [inputValues, setInputValues] = useState({ title: '', content: '' });
   const [openError, setOpenError] = useState<boolean>(false);
   const [openAdd, setOpenAdd] = useState<boolean>(false);
@@ -32,6 +35,7 @@ function TodoDetail() {
         onSuccess: () => {
           setInputValues({ title: '', content: '' });
           setOpenAdd(true);
+          refetch();
         },
       },
     );
@@ -85,4 +89,4 @@ function TodoDetail() {
   );
 }
 
-export default TodoDetail;
+export default AddTodo;

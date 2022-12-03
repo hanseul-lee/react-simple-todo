@@ -1,5 +1,5 @@
 import type { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Button, IconButton, TextField } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,8 +12,11 @@ import { Modal } from '@/components';
 import { TODO_VALIDATION_ERRORS } from '@/consts';
 import { deleteTodo, updateTodo } from '@/apis';
 import { useTodo } from '@/hooks';
+import { TodoContext } from '@/store';
 
 function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
+  const { refetch } = useContext(TodoContext);
+
   const params = useParams();
   const { data } = useTodo(params.todoId || '');
   const navigate = useNavigate();
@@ -50,6 +53,7 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
       onSuccess: () => {
         setIsEditing(false);
         setOpenEdit(true);
+        refetch();
       },
     });
   };
@@ -72,6 +76,7 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
       onSuccess: () => {
         setIsEditing(false);
         navigate(-1);
+        refetch();
       },
     });
   };
