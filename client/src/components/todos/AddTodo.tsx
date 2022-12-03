@@ -5,11 +5,15 @@ import { useMutation } from '@tanstack/react-query';
 
 import * as S from './Todos.style';
 
+import { Modal } from '@/components';
 import { TODO_VALIDATION_ERRORS } from '@/consts';
 import { createTodo } from '@/apis';
 
 function TodoDetail() {
   const [inputValues, setInputValues] = useState({ title: '', content: '' });
+  const [openError, setOpenError] = useState<boolean>(false);
+  const [openAdd, setOpenAdd] = useState<boolean>(false);
+
   const { title, content } = inputValues;
 
   const addTodoMutation = useMutation(createTodo, {
@@ -23,11 +27,11 @@ function TodoDetail() {
       { title, content },
       {
         onError: () => {
-          alert(TODO_VALIDATION_ERRORS.ERROR_DURING_PROCESSING);
+          setOpenError(true);
         },
         onSuccess: () => {
           setInputValues({ title: '', content: '' });
-          alert('추가 완료!');
+          setOpenAdd(true);
         },
       },
     );
@@ -71,6 +75,12 @@ function TodoDetail() {
           추가
         </Button>
       </S.Form>
+      <Modal open={openAdd} setOpen={setOpenAdd}>
+        추가 완료!
+      </Modal>
+      <Modal open={openError} setOpen={setOpenError}>
+        {TODO_VALIDATION_ERRORS.ERROR_DURING_PROCESSING}
+      </Modal>
     </S.TodoContainer>
   );
 }

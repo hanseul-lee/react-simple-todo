@@ -8,6 +8,7 @@ import EditIcon from '@mui/icons-material/Create';
 
 import * as S from './Todos.style';
 
+import { Modal } from '@/components';
 import { TODO_VALIDATION_ERRORS } from '@/consts';
 import { deleteTodo, updateTodo } from '@/apis';
 import { useTodo } from '@/hooks';
@@ -29,6 +30,8 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
     title: '',
     content: '',
   });
+  const [openError, setOpenError] = useState<boolean>(false);
+  const [openEdit, setOpenEdit] = useState<boolean>(false);
 
   const handleChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedTodo({
@@ -42,11 +45,11 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
 
     updateTodoMutation.mutate(selectedTodo, {
       onError: () => {
-        alert(TODO_VALIDATION_ERRORS.ERROR_DURING_PROCESSING);
+        setOpenError(true);
       },
       onSuccess: () => {
         setIsEditing(false);
-        alert('수정 완료!');
+        setOpenEdit(true);
       },
     });
   };
@@ -64,7 +67,7 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
 
     deleteTodoMutation.mutate(params.todoId || '', {
       onError: () => {
-        alert(TODO_VALIDATION_ERRORS.ERROR_DURING_PROCESSING);
+        setOpenError(true);
       },
       onSuccess: () => {
         setIsEditing(false);
@@ -139,6 +142,12 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
           </IconButton>
         </S.IconWrap>
       )}
+      <Modal open={openEdit} setOpen={setOpenEdit}>
+        수정 완료!
+      </Modal>
+      <Modal open={openError} setOpen={setOpenError}>
+        {TODO_VALIDATION_ERRORS.ERROR_DURING_PROCESSING}
+      </Modal>
     </S.TodoContainer>
   );
 }
