@@ -27,12 +27,13 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
   const deleteTodoMutation = useMutation(deleteTodo, {
     mutationKey: ['deleteTodo'],
   });
-
-  const [selectedTodo, setSelectedTodo] = useState({
+  const initialTodoWithNoContent = {
     id: '',
     title: '',
     content: '',
-  });
+  };
+
+  const [selectedTodo, setSelectedTodo] = useState(initialTodoWithNoContent);
   const [openError, setOpenError] = useState<boolean>(false);
   const [openEdit, setOpenEdit] = useState<boolean>(false);
 
@@ -75,8 +76,9 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
       },
       onSuccess: () => {
         setIsEditing(false);
-        navigate(-1);
+        navigate('/');
         refetch();
+        setSelectedTodo(initialTodoWithNoContent);
       },
     });
   };
