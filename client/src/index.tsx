@@ -5,10 +5,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import reportWebVitals from './reportWebVitals';
-import './styles/global.css';
 import { router } from './router';
 
-const queryClient = new QueryClient();
+import { GlobalStyle } from '@/styles';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 20,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -16,6 +23,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    <GlobalStyle />
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <ReactQueryDevtools position="bottom-right" />

@@ -1,13 +1,14 @@
 import type { Dispatch, SetStateAction } from 'react';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import * as S from './Todos.style';
 
-import { useTodos } from '@/hooks';
 import type { Todo } from '@/types';
+import { TodoContext } from '@/store';
 
 function TodoList({ setIsEditing }: TodoListProps) {
-  const { data, isSuccess } = useTodos();
+  const { data, isSuccess } = useContext(TodoContext);
 
   const handleClickTodo = () => {
     setIsEditing(false);

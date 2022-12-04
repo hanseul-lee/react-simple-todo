@@ -27,7 +27,9 @@ export const getTodoById = async (id: string) => {
     return data?.data;
   } catch (err) {
     if (err instanceof AxiosError) {
-      throw new Error(err.response?.statusText);
+      throw new Error(
+        ` ${err.response?.statusText} ${err.response?.data.details}`,
+      );
     }
   }
 };

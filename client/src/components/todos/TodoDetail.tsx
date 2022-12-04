@@ -1,5 +1,5 @@
 import type { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Button, IconButton, TextField } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -8,11 +8,15 @@ import EditIcon from '@mui/icons-material/Create';
 
 import * as S from './Todos.style';
 
+import { Modal } from '@/components';
 import { TODO_VALIDATION_ERRORS } from '@/consts';
 import { deleteTodo, updateTodo } from '@/apis';
 import { useTodo } from '@/hooks';
+import { TodoContext } from '@/store';
 
 function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
+  const { refetch } = useContext(TodoContext);
+
   const params = useParams();
   const { data } = useTodo(params.todoId || '');
   const navigate = useNavigate();
@@ -23,12 +27,15 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
   const deleteTodoMutation = useMutation(deleteTodo, {
     mutationKey: ['deleteTodo'],
   });
-
-  const [selectedTodo, setSelectedTodo] = useState({
+  const initialTodoWithNoContent = {
     id: '',
     title: '',
     content: '',
-  });
+  };
+
+  const [selectedTodo, setSelectedTodo] = useState(initialTodoWithNoContent);
+  const [openError, setOpenError] = useState<boolean>(false);
+  const [openEdit, setOpenEdit] = useState<boolean>(false);
 
   const handleChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedTodo({
@@ -42,11 +49,12 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
 
     updateTodoMutation.mutate(selectedTodo, {
       onError: () => {
-        alert(TODO_VALIDATION_ERRORS.ERROR_DURING_PROCESSING);
+        setOpenError(true);
       },
       onSuccess: () => {
         setIsEditing(false);
-        alert('수정 완료!');
+        setOpenEdit(true);
+        refetch();
       },
     });
   };
@@ -64,11 +72,13 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
 
     deleteTodoMutation.mutate(params.todoId || '', {
       onError: () => {
-        alert(TODO_VALIDATION_ERRORS.ERROR_DURING_PROCESSING);
+        setOpenError(true);
       },
       onSuccess: () => {
         setIsEditing(false);
-        navigate(-1);
+        navigate('/');
+        refetch();
+        setSelectedTodo(initialTodoWithNoContent);
       },
     });
   };
@@ -139,6 +149,12 @@ function TodoDetail({ isEditing, setIsEditing }: TodoDetailProps) {
           </IconButton>
         </S.IconWrap>
       )}
+      <Modal open={openEdit} setOpen={setOpenEdit}>
+        수정 완료!
+      </Modal>
+      <Modal open={openError} setOpen={setOpenError}>
+        {TODO_VALIDATION_ERRORS.ERROR_DURING_PROCESSING}
+      </Modal>
     </S.TodoContainer>
   );
 }
