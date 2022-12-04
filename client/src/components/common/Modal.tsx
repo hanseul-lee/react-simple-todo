@@ -1,5 +1,5 @@
 import { Box, Modal as ModalMui } from '@mui/material';
-import type { JSXElementConstructor, ReactElement } from 'react';
+import type { ReactNode } from 'react';
 
 import * as S from './Modal.style';
 
@@ -48,7 +48,7 @@ interface ModalProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   onConfirm?: () => void;
-  children: ReactElement<any, string | JSXElementConstructor<any>> | string;
+  children: ReactNode;
 }
 
 export default Modal;
