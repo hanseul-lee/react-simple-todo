@@ -1,22 +1,64 @@
-# react-simple-todo
+<div id='id-section1'/>
+
+<h1 align="center"> react-simple-todo </h1>
 
 > CRUD를 사용해 react와 react-query를 이용한 간단한 todo를 만들고 리팩토링한 과정을 담았습니다.
 
-## 💻 Preview
-
-### 1) 로그인, 회원가입
-
-<img width="600" src="https://user-images.githubusercontent.com/69497936/200132522-f9982884-4cf3-4255-9963-2749ccf6400e.mov" />
-
-### 2) Todo
-
-<img width="600" src="https://user-images.githubusercontent.com/69497936/205487503-39f0a3d4-bd48-43c5-ac99-83d1623d736f.mov" />
+- 스터디 진행
+  - 목표: 회사가 내게 확인하고 싶은 것들을 이해하고, 과락하지 않는 기술 과제 제출하기
+    <img width="598" alt="image" src="https://user-images.githubusercontent.com/69497936/206885814-0bd92606-66dd-4758-bdf3-b211efb1d11b.png">
+  - 기간: 6주(22.10.30 ~ 22.12.11) - 매주 일요일 저녁 8시
+  - 인원: 5명
+  - 역할:
+    - 스터디 리더를 맡아 매주 2시간 넘게 발표를 진행하고 자료 공유 (6회)
+      - 프리온보딩 내용을 기반으로 react, react-query, typescript 등과 관련된 개념, 더 나은 기술과제, 더 좋은 코드를 짜기 위한 방법에 대해 자료를 정리하고 경험을 기반으로 활용할 수 있는 방법 등에 대해 발표하였습니다.
+      - 이후 당일 발표에서 참고했던 자료, 좋았던 블로그 글, 유튜브, 공식 문서 등을 팀원들께 공유하였습니다.
+  - 진행 방식: 각자 각 주차에 맞는 코드를 구현하고 스터디원들과 함께 코드 리뷰 진행
 
 <br />
 
-## 📝 WorkList
+## 📋 Table of Contents
 
-### 1) Auth
+- [1) Preview](#id-section2)
+- [2) 기술 스택](#id-section3)
+- [3) 요구 사항 및 구현 여부](#id-section4)
+- [4) Getting Started](#id-section5)
+- [5) 폴더 구조](#id-section6)
+- [6) 기억에 남는 트러블슈팅 및 리팩토링](#id-section7)
+  - [1. router 코드 구현](#id-section11)
+  - [2. query에 staleTime 적용해 todo api 요청 최적화](#id-section12)
+  - [3. dependencies와 devDependencies 구분](#id-section13)
+- [7) 아쉬웠던 점](#id-section8)
+- [8) 느낀점](#id-section9)
+
+<br />
+
+<div id='id-section2'/>
+
+## 💻 1) Preview
+
+### 1-1) 로그인, 회원가입
+
+https://user-images.githubusercontent.com/69497936/206891587-1b74616f-abe9-4f75-a26e-f7ce2fcc49a8.mov
+
+### 1-2) Todo
+
+https://user-images.githubusercontent.com/69497936/206891630-5e366aa7-2735-4c16-b7fd-8ac40cef8d83.mov
+
+<br />
+
+<div id='id-section3'/>
+
+## ⚒ 2) 기술 스택
+
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/ReactQuery-FF4154?style=flat-square&logo=ReactQuery&logoColor=white"/> <img src="https://img.shields.io/badge/emotion-DB7093?style=flat-square&logo=emotion&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/>
+<br />
+
+<div id='id-section4'/>
+
+## 📝 3) 요구 사항 및 구현 여부
+
+### 3-1) Auth
 
 - /auth 경로에 로그인 / 회원가입 기능을 개발합니다
   - 로그인, 회원가입을 별도의 경로로 분리해도 무방합니다
@@ -30,7 +72,7 @@
   - [x] 다음 번에 로그인 시 토큰이 존재한다면 루트 경로로 리다이렉트 시켜주세요
   - [x] 어떤 경우든 토큰이 유효하지 않다면 사용자에게 알리고 로그인 페이지로 리다이렉트 시켜주세요
 
-### 2) Todo
+### 3-2) Todo
 
 - Todo List API를 호출하여 Todo List CRUD 기능을 구현해주세요
   - [x] 목록 / 상세 영역으로 나누어 구현해주세요
@@ -46,7 +88,13 @@
 
 <br />
 
-## 🚀 Getting Started
+<div id='id-section5'/>
+
+## 🚀 4) Getting Started
+
+- Prerequisites
+  - npm (>=8.15.0)
+  - node.js (>=16.17.1)
 
 ```sh
 $ yarn
@@ -55,7 +103,9 @@ $ yarn start
 
 <br />
 
-## 📦 폴더 구조
+<div id='id-section6'/>
+
+## 📦 5) 폴더 구조
 
 ```
 📦 react-simple-todo
@@ -93,11 +143,13 @@ client
 
 <br />
 
-## 🙌 기억에 남는 트러블슈팅 및 리팩토링
+<div id='id-section7'/>
+
+## 🙌 6) 기억에 남는 트러블슈팅 및 리팩토링
 
 - 모든 트러블슈팅 및 리팩토링 과정은 [Issue](https://github.com/hanseul-lee/react-simple-todo/issues)를 참고해주시면 감사하겠습니다.
 
-<br />
+<div id='id-section11'/>
 
 ### 1. router 코드 구현 ([코드1](https://github.com/hanseul-lee/react-simple-todo/pull/3/commits/a352bbba3cebe383ef599b4a2b11712d98abb20a), [코드2](https://github.com/hanseul-lee/react-simple-todo/pull/3/commits/c4faa41eca7389545540ff09d8a8fccbabf8236a))
 
@@ -242,6 +294,8 @@ export const loader = () => {
 
 하지만 react-router 공식문서를 계속해서 찾아보니 오히려 redirect, error처리, 라우팅까지 한번에 해결 가능한 방법이었고 머리를 싸매고 최대한 내 코드에 적용시켜 보려 노력했다. 저 기능들은 심지어 2달 전(2022.09)에 릴리즈된 버전이었기에 완전 따끈따끈한 기능이었고 어쩐지 공식문서에도 'new' 태그와 함께 `tutorial` 파트에도 모두 도입되어 있었다. 프론트엔드 기술 스택은 자주 변화한다는 말을 익히 들어왔지만, 이번 리팩토링에서 제대로 그 말을 느낄 수 있었다. 이런 해결 과정 덕분에 스터디원들에게도 이 업데이트에 대해 피드백해 줄 수 있었고, 매번 익숙한 코드에 의존하기보다 새로운 기술, 변화에 더 유연하게 받아들이는 자세의 중요성에 대해서도 확실하게 배울 수 있었던 시간이었다.
 
+<div id='id-section12'/>
+
 ### 2. query에 staleTime 적용해 todo api 요청 최적화 ([코드](https://github.com/hanseul-lee/react-simple-todo/commit/81330424a282ae8d0176df03e678ad7ccd9e23fd))
 
 **문제**
@@ -270,6 +324,8 @@ https://user-images.githubusercontent.com/69497936/205484721-f0b8edef-7572-4c0c-
 - [react-router 공식문서](https://reactrouter.com/en/main)
 - [react-query 공식문서 - React Example: React Router](https://tanstack.com/query/v4/docs/examples/react/react-router)
 
+<div id='id-section13'/>
+
 ### 3. dependencies와 devDependencies 구분
 
 - dependencies
@@ -289,10 +345,37 @@ packge.json 내에서 제대로 사용하는지 확인하는 첫번째 사항임
     - https://github.com/facebook/create-react-app/issues/1764
       ![image](https://user-images.githubusercontent.com/69497936/201474819-67256b16-9085-4283-a1c9-8059da768967.png)
 
-## 👉 아쉬웠던 점
+<br />
+
+<div id='id-section8'/>
+
+## 🐣 7) 아쉬웠던 점
 
 - 에러 핸들링에 대해 좀 더 고민해보고 리팩토링하지 못한 것
 
-## Reference.
+<br />
+
+<div id='id-section9'/>
+
+## 🌳 8) 느낀점
+
+1. **스터디 리더라는 책임감** <br />
+   스터디 모집부터 리더를 맡았기에 책임감이 컸다. 매주 2시간 가량의 발표 자료를 찾고 준비하는 것도 부담이었는데 최대한 팀원들에게 도움을 주고 싶어서 회사 경험에서부터 도움이 될만한 자료, 블로그 글, 컨퍼런스 강연, 유튜브 등을 찾아헤맸다. 덕분에 어떤 주는 너무 바빠 내 과제는 완성 못하더라도 스터디원들을 위한 발표 준비는 100% 완료할 수 있었다. 스터디 리더라는 책임감도 있었지만 내가 자료에 대해 제대로 이해하지 못하면 설명할 때 분명히 막히는 부분이 생기기에 내 공부에도 엄청 도움이 되었다.
+2. **아무리 강조해도 지나치지 않은 공식 문서** <br />
+   공식문서의 중요성에 대해 다시 한 번 깨달았다. 아무도 알지 못한 `react-router`의 최신 업데이트 내용을 공식문서를 열심히 들여다 본 덕에 제일 처음 알게 되고 스터디원들에게 소개해 줄 수 있었으며, 그 외 자료를 준비하거나 코드리뷰를 하면서도 신뢰성있는 공식 문서를 기반으로 참고자료를 가져오려 많이 노력했다. 기존에 잘 알지 못했던 `react-query`에 대해서도 이번 스터디를 통해 공식 문서와 tkdodo의 블로그를 끊임없이 들락날락한 것이 현업 코드를 이해하는 데에도 큰 도움이 되었다.
+3. **팀원들의 장점 배우기** <br />
+   같은 구현사항에 대해서도 이런 부분까지? 라고 놀랄정도로 내가 생각지 못한 디테일한 부분을 고려한 팀원들의 코드를 보고 피드백하며 많이 배웠다. 연차에 상관없이 내가 갖지 못한 다른 사람의 시야를 알게 되고 이를 통해 내 시야를 확장할 수 있는 것이 바로 스터디가 주는 장점이 아닐까 생각한다. 서로 많이 배우고 피드백할 수 있는 팀원들을 만날 수 있어 감사했다.
+4. **칭찬은 고래도 춤추게 한다** <br />
+   이런 스터디들 열어줘서 고맙다고 말해주는 팀원들이 있어 감사했다. 따로 연락을 줘서 지금까지 했던 스터디 중에 제일 좋았다고 말해주거나 제 3자에게 '우리 스터디 리더 너무 좋다'고 칭찬했던 내용을 우연히 전해들은 적도 있었다. 연말에 업무부터 여러 스케쥴이 다 겹쳐 스터디 준비가 너무 버거울 때에도 팀원들의 따뜻한 한마디, 짝꿍이 아닌데도 달려와 남겨주는 코드 리뷰를 보며 그 따뜻함에 끝까지 달려올 수 있었던 것 같다.
+
+<br />
+
+## 📖 Reference.
 
 - [wanted-pre-onboarding-challenge-fe-1-api](https://github.com/starkoora/wanted-pre-onboarding-challenge-fe-1-api)
+
+<span align="right">
+
+[🔼 Go to Top](#id-section1)
+
+</span>
