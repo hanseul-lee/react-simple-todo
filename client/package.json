@@ -1,7 +1,7 @@
 {
-  "name": "react-todo-boilerplate",
+  "name": "react-simple-todo",
   "version": "0.1.0",
-  "description": "react boilerplate with simple todo app",
+  "description": "react simple todo app",
   "engines": {
     "node": ">=16",
     "npm": ">=8"
